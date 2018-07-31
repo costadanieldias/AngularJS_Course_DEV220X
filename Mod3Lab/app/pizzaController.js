@@ -14,8 +14,5 @@ app.controller('pizzaController', [
             $scope.model.successMsg = 'Topping added.';            
         }
 
-        $scope.hideSuccessMsg = function() {
-            $scope.model.successMsg = null;
-        }
     }
 ]);
