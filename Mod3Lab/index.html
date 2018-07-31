@@ -13,23 +13,26 @@
 
         <h2>{{model.title}}</h2>
 
-        <h3>Topping Search</h3>
+        <h3></h3>
         
         <input type="text" class="form-control" ng-model="model.search">
+        
+        <pre class="alert-success" ng-show="model.successMsg">{{model.successMsg}} <input type="button" value="Close" ng-click="hideSuccessMsg()"><br></pre>
 
+        <pre class="alert-danger" ng-show="model.search && results.length === 0">No results.</pre>
+        
         <div ng-hide="model.search">
             Enter the search criteria above
         </div>        
 
         <br>
 
-        <div ng-show="model.search" ng-repeat="t in model.availableToppings">
+        <div ng-show="model.search" ng-repeat="t in model.availableToppings | filter:model.search as results">
             <span ng-click="addTopping(t)">{{t}}</span>
+            <br>
         </div>
-
-        <br>
         
-        <h3>Selected Toppings</h3>
+        <h3 ng-show="model.toppings.length >= 1">Selected Toppings</h3>        
         <div ng-repeat="t in model.toppings">
             {{t}}
         </div>
