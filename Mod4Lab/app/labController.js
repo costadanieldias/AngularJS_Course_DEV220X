@@ -4,15 +4,25 @@ app.controller('labController', [
         $scope.model = {number: 0, result: 'Ready'};
         $scope.checkOddNumber = checkOddNumber;
         $scope.getRepos = getRepos;
+        $scope.loadDetail = loadDetail;
 
         function getRepos() {
             $http.get('https://api.github.com/orgs/angular/repos')
             .then(function(response) {
                 $scope.model.repos = response.data;
             }, function(response) {
-                $scope.model.repos = 'Error: ' + response.data.message;
-                console.log('teste');
+                $scope.model.repos = 'Error: ' + response.data.message;                
             });
+        }
+
+        function loadDetail(name) {
+            var url = 'https://api.github.com/repos/angular/' + name;
+            $http.get(url)
+                .then(function(response) {
+                    $scope.model.detail = response.data;
+                }, function(response) {
+                    $scope.model.detail = {error: true, message: 'Error ' + response.data.message};
+                });
         }
 
         function checkOddNumber(input) {
