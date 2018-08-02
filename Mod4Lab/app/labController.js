@@ -7,11 +7,17 @@ app.controller('labController', [
         $scope.loadDetail = loadDetail;
 
         function getRepos() {
-            $scope.model.repos = gitHub.getAll();
+            gitHub.getAll({ org: $scope.model.filter }).$promise
+                .then(function(response) {
+                    $scope.model.repos = response;
+                }, function(response) {
+                    alert('No results.');
+                    console.log(response.status);
+                });            
         }
 
         function loadDetail(name) {
-            $scope.model.detail = gitHub.getDetail({ id: name });
+            $scope.model.detail = gitHub.getDetail({ org: $scope.model.filter, id: name });
         }
 
         function checkOddNumber(input) {
