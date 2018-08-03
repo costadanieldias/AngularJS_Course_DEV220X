@@ -6,8 +6,8 @@ app.controller('labController', [
         $scope.getRepos = getRepos;
         $scope.loadDetail = loadDetail;
 
-        function getRepos() {
-            gitHub.getAll({ org: $scope.model.filter }).$promise
+        function getRepos(org) {
+            gitHub.getAll({ org: org }).$promise
                 .then(function(response) {
                     $scope.model.repos = response;
                 }, function(response) {
@@ -16,8 +16,8 @@ app.controller('labController', [
                 });            
         }
 
-        function loadDetail(name) {
-            gitHub.getDetail({ org: $scope.model.filter, id: name }).$promise
+        function loadDetail(name, org) {
+            gitHub.getDetail({ id: name, org: org }).$promise
                 .then(function(response) {
                     $scope.model.detail = response;
                 }, function(response) {

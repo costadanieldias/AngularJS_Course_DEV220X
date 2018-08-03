@@ -18,7 +18,7 @@
         
         <div>
             <input type="text" ng-model="model.filter" class="form-control" />
-            <input type="button" class="btn btn-primary" value="Load Repos" ng-click="getRepos()" />
+            <input type="button" class="btn btn-primary" value="Load Repos" ng-click="getRepos(model.filter)" />
         </div>
 
         <div class="row">
@@ -34,7 +34,7 @@
                             <h4>{{r.name}}</h4> {{r.description}}
                         </td>
                         <td>{{r.language}}</td>
-                        <td><input type="button" class="btn btn-success" ng-click="loadDetail(r.name)" value="Detail"></td>
+                        <td><input type="button" class="btn btn-success" ng-click="loadDetail(r.name, r.owner.login)" value="Detail"></td>
                     </tr>
                 </table>
             </div>
