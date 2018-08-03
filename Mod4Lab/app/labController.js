@@ -17,7 +17,12 @@ app.controller('labController', [
         }
 
         function loadDetail(name) {
-            $scope.model.detail = gitHub.getDetail({ org: $scope.model.filter, id: name });
+            gitHub.getDetail({ org: $scope.model.filter, id: name }).$promise
+                .then(function(response) {
+                    $scope.model.detail = response;
+                }, function(response) {
+                    alert('Error: ' + response.status);
+                });
         }
 
         function checkOddNumber(input) {
