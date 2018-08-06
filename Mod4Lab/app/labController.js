@@ -1,6 +1,6 @@
 app.controller('labController', [
-    '$scope', '$timeout', '$q', '$http', 'gitHub',
-    function ($scope, $timeout, $q, $http, gitHub) {
+    '$scope', '$timeout', '$q', 'gitHub',
+    function ($scope, $timeout, $q, gitHub) {
         $scope.model = {number: 0, result: 'Ready'};
         $scope.checkOddNumber = checkOddNumber;
         $scope.getRepos = getRepos;
