@@ -13,7 +13,6 @@ app.controller('labController', [
         function submit(model) {
             registration.submit(model).$promise
                 .then(function(response) {
-                    console.log(response);
                     reset();
                     $scope.token = response.token;
                     alert('You were registrated successfully! Here is your token: ' + response.token);
